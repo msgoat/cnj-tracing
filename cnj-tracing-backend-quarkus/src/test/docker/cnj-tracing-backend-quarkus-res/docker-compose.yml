@@ -10,6 +10,8 @@ services:
 
   downstream:
     image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-tracing-downstream:latest
+    ports:
+      - "38080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: dev
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
@@ -17,6 +19,8 @@ services:
 
   postgres:
     image: postgres:11-alpine
+    ports:
+      - "35432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: changeit
@@ -27,25 +31,10 @@ services:
 
   jaeger:
     image: jaegertracing/all-in-one:1.19
-
-  backend:
-    image: ${docker.image.name}:${project.version}
     ports:
-      - "38080:8080"
-    environment:
-      QUARKUS_PROFILE: dev
-      MP_JWT_VERIFY_PUBLICKEY_LOCATION: "https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs"
-      MP_JWT_VERIFY_ISSUER: "https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain"
-      CLOUDTRAIN_COMMON_REST_TRACE_ENABLED: "true"
-      CLOUDTRAIN_SERVICES_GRANTEDPERMISSIONS_MP_REST_URL: "http://downstream:8080"
-      QUARKUS_DATASOURCE_USERNAME: postgres
-      QUARKUS_DATASOURCE_PASSWORD: changeit
-      QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://postgres:5432/cloudtrain
-      QUARKUS_JAEGER_AGENT_HOST_PORT: jaeger:6831
-    depends_on:
-      - downstream
-      - postgres
-      - jaeger
+      - "36831:6831"
+      - "36832:6832"
+      - "36686:16686"
 
 volumes:
 

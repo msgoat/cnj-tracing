@@ -8,6 +8,9 @@ version: '3'
 
 services:
 
+  jaeger:
+    image: jaegertracing/all-in-one:1.19
+
   backend:
     image: ${docker.image.name}:${project.version}
     ports:
@@ -16,6 +19,9 @@ services:
       SPRING_PROFILES_ACTIVE: dev
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain
+    depends_on:
+      - jaeger
+
 
 
 
