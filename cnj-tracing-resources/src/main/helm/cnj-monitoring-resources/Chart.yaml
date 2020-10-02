@@ -1,0 +1,12 @@
+apiVersion: v2
+version: 1.0.0
+appVersion: "${project.version}"
+description: "${project.description}"
+name: cnj-tracing-resources
+maintainers:
+  - name: theism
+    email: michael.theis@msg.group
+dependencies:
+  - name: postgresql
+    version: "8.8.0"
+    repository: "https://charts.bitnami.com/bitnami"
