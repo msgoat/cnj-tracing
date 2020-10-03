@@ -24,6 +24,8 @@
         <common.security.version>1.2.0</common.security.version>
         <!-- common monitoring dependencies -->
         <micrometer.version>1.5.5</micrometer.version>
+        <!-- common tracing dependencies -->
+        <spring.opentracing.version>3.2.0</spring.opentracing.version>
         <!-- docker related properties -->
         <docker.registry.name>docker.at41tools.k8s.aws.msgoat.eu</docker.registry.name>
         <docker.organization.name>cloudtrain</docker.organization.name>
@@ -132,7 +134,7 @@
         <dependency>
             <groupId>io.opentracing.contrib</groupId>
             <artifactId>opentracing-spring-jaeger-web-starter</artifactId>
-            <version>3.2.0</version>
+            <version>${spring.opentracing.version}</version>
         </dependency>
         <!-- =========================== -->
         <!-- test time dependencies      -->

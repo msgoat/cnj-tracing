@@ -51,6 +51,8 @@ metrics:
 # tracing configuration
 tracing:
   enabled: true
-  agent:
-    host: sys-tracing-jaeger-agent.sys-tracing
-    port: 6831
+  jaeger:
+    agent:
+      host: sys-tracing-jaeger-agent.sys-tracing
+      port: 6831
+    logSpans: true

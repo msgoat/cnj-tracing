@@ -64,3 +64,12 @@ persistence:
 metrics:
   # enabled controls if pods are annotated for scraping
   enabled: true
+
+# tracing configuration
+tracing:
+  enabled: true
+  jaeger:
+    agent:
+      host: sys-tracing-jaeger-agent.sys-tracing
+      port: 6831
+    logSpans: true

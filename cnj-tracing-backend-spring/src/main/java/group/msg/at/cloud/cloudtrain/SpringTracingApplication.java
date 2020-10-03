@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Point of entry for this Spring Boot application.
  */
 @SpringBootApplication
-public class SpringMonitoringApplication {
+public class SpringTracingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringMonitoringApplication.class, args);
+        SpringApplication.run(SpringTracingApplication.class, args);
     }
 }

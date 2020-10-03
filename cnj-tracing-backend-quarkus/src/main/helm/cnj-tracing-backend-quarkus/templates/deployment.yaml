@@ -59,6 +59,13 @@ spec:
                   key: {{ .Values.persistence.postgres.secret.keys.password }}
             - name: QUARKUS_DATASOURCE_JDBC_URL
               value: "jdbc:postgresql://{{ .Values.persistence.postgres.host }}:{{ .Values.persistence.postgres.port }}/{{ .Values.persistence.postgres.database }}"
+            - name: QUARKUS_JAEGER_ENABLED
+              value: {{ .Values.tracing.enabled | quote }}
+            - name: QUARKUS_JAEGER_AGENT_HOST_PORT
+              value: "{{ .Values.tracing.jaeger.agent.host }}:{{ .Values.tracing.jaeger.agent.port }}"
+            - name: QUARKUS_JAEGER_REPORTER_LOG_SPANS
+              value: {{ .Values.tracing.jaeger.logsSpans | quote }}
+
 {{- if .Values.image.pullSecret }}
       imagePullSecrets:
         - name: {{ .Values.image.pullSecret }}

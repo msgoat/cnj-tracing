@@ -27,6 +27,8 @@
         <common.security.version>1.2.0</common.security.version>
         <!-- common monitoring dependencies -->
         <micrometer.version>1.5.5</micrometer.version>
+        <!-- common tracing dependencies -->
+        <spring.opentracing.version>3.2.0</spring.opentracing.version>
         <!-- docker related properties -->
         <docker.registry.name>docker.at41tools.k8s.aws.msgoat.eu</docker.registry.name>
         <docker.organization.name>cloudtrain</docker.organization.name>
@@ -65,6 +67,7 @@
         <revision>4.0.0</revision>
         <sha1></sha1>
         <changelist></changelist>
+        <opentracing.version>3.2.0</opentracing.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -143,11 +146,16 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>${logstash.logback.encoder.version}</version>
         </dependency>
-        <!-- showcase specific section -->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
             <version>${micrometer.version}</version>
+        </dependency>
+        <!-- showcase specific section -->
+        <dependency>
+            <groupId>io.opentracing.contrib</groupId>
+            <artifactId>opentracing-spring-jaeger-web-starter</artifactId>
+            <version>${opentracing.version}</version>
         </dependency>
         <!-- =========================== -->
         <!-- test time dependencies      -->
