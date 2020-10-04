@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>group.msg.at.cloud</groupId>
     <artifactId>cnj-tracing</artifactId>
-    <version>4.0.0</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <description>Cloud native Java applications showcase for cluster tracing</description>
     <properties>
