@@ -63,6 +63,14 @@ spec:
               value: {{ .Values.persistence.postgres.host }}
             - name: POSTGRES_DB_PORT
               value: {{ .Values.persistence.postgres.port | quote }}
+            - name: JAEGER_ENABLED
+              value: {{ .Values.tracing.enabled | quote }}
+            - name: JAEGER_AGENT_HOST
+              value: {{ .Values.tracing.jaeger.agent.host | quote }}
+            - name: JAEGER_AGENT_PORT
+              value: {{ .Values.tracing.jaeger.agent.port | quote }}
+            - name: JAEGER_REPORTER_LOG_SPANS
+              value: {{ .Values.tracing.jaeger.logsSpans | quote }}
 {{- if .Values.image.pullSecret }}
       imagePullSecrets:
         - name: {{ .Values.image.pullSecret }}

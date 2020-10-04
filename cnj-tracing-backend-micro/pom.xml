@@ -26,6 +26,8 @@
         <flyway.version>6.5.7</flyway.version>
         <postgres.jdbc.version>42.2.12</postgres.jdbc.version>
         <common.persistence.jpa.version>2.1.0</common.persistence.jpa.version>
+        <!-- common tracing dependencies -->
+        <payara.opentracing.jaeger.version>0.8.0</payara.opentracing.jaeger.version>
         <!-- docker related properties -->
         <docker.registry.name>docker.at41tools.k8s.aws.msgoat.eu</docker.registry.name>
         <docker.organization.name>cloudtrain</docker.organization.name>
@@ -56,7 +58,7 @@
         <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
         <!-- pinning versions of application type specific maven plugins -->
         <maven.war.plugin.version>3.2.3</maven.war.plugin.version>
-        <maven.payara.micro.plugin.version>1.0.6</maven.payara.micro.plugin.version>
+        <maven.payara.micro.plugin.version>1.2.0</maven.payara.micro.plugin.version>
         <!-- pinning versions of cloud native specific maven plugins -->
         <maven.compose.plugin.version>1.0.0</maven.compose.plugin.version>
         <maven.docker.plugin.version>0.33.0</maven.docker.plugin.version>
@@ -113,14 +115,17 @@
         <dependency>
             <groupId>org.eclipse.microprofile.jwt</groupId>
             <artifactId>microprofile-jwt-auth-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.microprofile.rest.client</groupId>
             <artifactId>microprofile-rest-client-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.microprofile.openapi</groupId>
             <artifactId>microprofile-openapi-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -152,10 +157,16 @@
             <artifactId>cnj-common-persistence-jpa</artifactId>
             <version>${common.persistence.jpa.version}</version>
         </dependency>
-        <!-- showcase specific section -->
         <dependency>
             <groupId>org.eclipse.microprofile.metrics</groupId>
             <artifactId>microprofile-metrics-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- showcase specific section -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.opentracing</groupId>
+            <artifactId>microprofile-opentracing-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- =========================== -->
         <!-- test time dependencies      -->
@@ -377,6 +388,35 @@
                         <configuration>
                             <payaraVersion>${payara.version}</payaraVersion>
                             <useUberJar>true</useUberJar>
+                            <customJars>
+                                <artifactItem>
+                                    <groupId>group.msg.at.cloud</groupId>
+                                    <artifactId>cnj-payara-opentracing-jaeger</artifactId>
+                                    <version>${payara.opentracing.jaeger.version}</version>
+                                </artifactItem>
+                            </customJars>
+                            <commandLineOptions>
+                                <option>
+                                    <key>--disablephonehome</key>
+                                    <value></value>
+                                </option>
+                                <option>
+                                    <key>--enablehealthcheck</key>
+                                    <value>true</value>
+                                </option>
+                                <option>
+                                    <key>--nocluster</key>
+                                    <value></value>
+                                </option>
+                                <option>
+                                    <key>--nohostaware</key>
+                                    <value></value>
+                                </option>
+                                <option>
+                                    <key>--enableRequestTracing</key>
+                                    <value></value>
+                                </option>
+                            </commandLineOptions>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -410,7 +450,15 @@
                             </execution>
                         </executions>
                         <configuration>
+                            <useUberJar>true</useUberJar>
                             <payaraVersion>${payara.version}</payaraVersion>
+                            <customJars>
+                                <artifactItem>
+                                    <groupId>group.msg.at.cloud</groupId>
+                                    <artifactId>cnj-payara-opentracing-jaeger</artifactId>
+                                    <version>${payara.opentracing.jaeger.version}</version>
+                                </artifactItem>
+                            </customJars>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -575,7 +623,15 @@
                             </execution>
                         </executions>
                         <configuration>
+                            <useUberJar>true</useUberJar>
                             <payaraVersion>${payara.version}</payaraVersion>
+                            <customJars>
+                                <artifactItem>
+                                    <groupId>group.msg.at.cloud</groupId>
+                                    <artifactId>cnj-payara-opentracing-jaeger</artifactId>
+                                    <version>${payara.opentracing.jaeger.version}</version>
+                                </artifactItem>
+                            </customJars>
                         </configuration>
                     </plugin>
                     <plugin>

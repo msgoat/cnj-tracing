@@ -8,7 +8,7 @@ LABEL maintainer="Michael Theis (msg group)" \
 ENV JAVA_OPTS="" \
     DOCKER_JAVA_OPTS="" \
     PAYARA_JAVA_OPTS="" \
-    PAYARA_ARGUMENTS="--disablephonehome --enablehealthcheck true --nocluster --nohostaware" \
+    PAYARA_ARGUMENTS="--disablephonehome --enablehealthcheck true --nocluster --nohostaware --enableRequestTracing" \
     PAYARA_LOGGING_FORMAT="JSON"
 
 RUN echo "adding run user payara to system" \
