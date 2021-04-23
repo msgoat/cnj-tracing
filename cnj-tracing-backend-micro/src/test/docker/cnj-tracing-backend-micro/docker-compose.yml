@@ -12,11 +12,11 @@ services:
     image: jaegertracing/all-in-one:1.19
 
   downstream:
-    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-tracing-downstream:latest
+    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-tracing-downstream:latest
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain
     depends_on:
       - jaeger
 
@@ -31,13 +31,13 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   backend:
-    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-tracing-backend-micro:latest
+    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-tracing-backend-micro:latest
     ports:
       - "38080:8080"
     environment:
       PAYARA_LOGGING_FORMAT: "TEXT"
-      MP_JWT_VERIFY_PUBLICKEY_LOCATION: "https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs"
-      MP_JWT_VERIFY_ISSUER: "https://iam.at41tools.k8s.aws.msgoat.eu/auth/realms/cloudtrain"
+      MP_JWT_VERIFY_PUBLICKEY_LOCATION: "https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs"
+      MP_JWT_VERIFY_ISSUER: "https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain"
       CLOUDTRAIN_COMMON_REST_TRACE_ENABLED: "true"
       CLOUDTRAIN_SERVICES_GRANTEDPERMISSIONS_MP_REST_URL: "http://downstream:8080"
       POSTGRES_DB_USER: postgres

@@ -3,7 +3,7 @@ kind: NetworkPolicy
 metadata:
   name: {{ include "cnj-tracing-downstream.fullname" . }}
   labels:
-    {{- include "cnj-tracing-downstream.labels" . | nindent 4 }}
+  {{- include "cnj-tracing-downstream.labels" . | nindent 4 }}
 spec:
   podSelector:
     matchLabels:

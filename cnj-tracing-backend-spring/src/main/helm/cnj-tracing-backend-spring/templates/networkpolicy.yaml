@@ -3,7 +3,7 @@ kind: NetworkPolicy
 metadata:
   name: {{ include "cnj-tracing-backend-spring.fullname" . }}
   labels:
-    {{- include "cnj-tracing-backend-spring.labels" . | nindent 4 }}
+  {{- include "cnj-tracing-backend-spring.labels" . | nindent 4 }}
 spec:
   podSelector:
     matchLabels:

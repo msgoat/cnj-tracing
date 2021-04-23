@@ -12,7 +12,11 @@ The actual integration of cluster tracing is demonstrated with four different Ja
 All showcases use a common resources container project, which deploys all attached resources to Kubernetes (see: [cnj-tracing-resources](cnj-tracing-resources/README.md)])
 
 ## Status
-![Build status](https://drone.at.automotive.msg.team/api/badges/msgoat/cnj-tracing/status.svg)
+![Build status](https://drone.cloudtrain.aws.msgoat.eu/api/badges/msgoat/cnj-tracing/status.svg)
+
+## Release information
+
+Check [changelog](changelog.md) for latest version and release information.
 
 ## Build this showcase 
 
