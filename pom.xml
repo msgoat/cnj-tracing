@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>group.msg.at.cloud</groupId>
     <artifactId>cnj-tracing</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
     <description>Cloud native Java applications showcase for cluster tracing</description>
     <properties>
@@ -13,7 +13,6 @@
     <modules>
         <module>cnj-tracing-resources</module>
         <module>cnj-tracing-downstream</module>
-        <module>cnj-tracing-backend-javaee</module>
         <module>cnj-tracing-backend-micro</module>
         <module>cnj-tracing-backend-spring</module>
         <module>cnj-tracing-backend-quarkus</module>
