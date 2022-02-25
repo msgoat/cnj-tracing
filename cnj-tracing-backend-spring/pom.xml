@@ -156,6 +156,11 @@
             <artifactId>micrometer-registry-prometheus</artifactId>
             <version>1.8.2</version>
         </dependency>
+        <dependency>
+            <groupId>group.msg.at.cloud.common</groupId>
+            <artifactId>cnj-common-observability-spring</artifactId>
+            <version>0.1.0</version>
+        </dependency>
         <!-- showcase specific section -->
         <dependency>
             <groupId>io.opentracing.contrib</groupId>

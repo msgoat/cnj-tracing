@@ -8,17 +8,8 @@ version: '3'
 
 services:
 
-  downstream:
-    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-tracing-downstream:latest
-    ports:
-      - "38080:8080"
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain
-
   postgres:
-    image: postgres:11-alpine
+    image: postgres:14-alpine
     ports:
       - "35432:5432"
     environment:
@@ -30,11 +21,21 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   jaeger:
-    image: jaegertracing/all-in-one:1.19
+    image: jaegertracing/all-in-one:1.30
     ports:
       - "36831:6831"
       - "36832:6832"
       - "36686:16686"
+
+  downstream:
+    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-tracing-downstream:latest
+    ports:
+      - "38080:8080"
+    environment:
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain
+    depends_on:
+      - jaeger
 
 volumes:
 
