@@ -1,6 +1,6 @@
 package group.msg.at.cloud.cloudtrain;
 
-import group.msg.at.cloud.common.observability.spring.CommonObservability;
+import group.msg.at.cloud.common.observability.CommonObservability;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

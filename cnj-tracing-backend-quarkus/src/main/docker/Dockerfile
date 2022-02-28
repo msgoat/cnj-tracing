@@ -26,13 +26,17 @@ RUN echo "adding run user quarkus to system" && \
 # copy entrypoint script
 COPY docker-entrypoint.sh /
 
+# copy wait script
+COPY wait-for.sh $ARG_JAVA_APPLICATION_HOME/
+
 # copy build artifacts into application home folder (here: quarkus deployment folder)
 COPY *.jar ${ARG_JAVA_APPLICATION_HOME}/
 
 # allow non-root user to access and execute all copied files
-RUN chown quarkus:quarkus /docker-entrypoint.sh \
-    && chmod u+x /docker-entrypoint.sh \
-    && chown -R quarkus:quarkus ${ARG_JAVA_APPLICATION_HOME}
+RUN chown quarkus:quarkus /docker-entrypoint.sh && \
+    chmod u+x /docker-entrypoint.sh && \
+    chmod u+x ${ARG_JAVA_APPLICATION_HOME}/wait-for.sh && \
+    chown -R quarkus:quarkus ${ARG_JAVA_APPLICATION_HOME}
 
 # use user ID instead of user name to allow kubernetes to check non-root users
 USER 1000
