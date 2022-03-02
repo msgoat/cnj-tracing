@@ -1,13 +1,12 @@
 package group.msg.at.cloud.cloudtrain.adapter.rest;
 
-import org.eclipse.microprofile.opentracing.Traced;
-
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.opentracing.Traced;
 
 /**
  * REST endpoint exposing readiness and liveness probes which are required

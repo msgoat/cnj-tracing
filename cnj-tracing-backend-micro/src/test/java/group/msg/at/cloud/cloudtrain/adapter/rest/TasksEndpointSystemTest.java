@@ -1,18 +1,18 @@
 package group.msg.at.cloud.cloudtrain.adapter.rest;
 
-import group.msg.at.cloud.common.test.JsonpAssertions;
-import group.msg.at.cloud.common.test.adapter.rest.RestAssuredSystemTestFixture;
+import group.msg.at.cloud.common.test.json.JsonpAssertions;
+import group.msg.at.cloud.common.test.rest.RestAssuredSystemTestFixture;
 import io.restassured.http.ContentType;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import jakarta.json.Json;
-import jakarta.json.JsonArray;
-import jakarta.json.JsonObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
@@ -31,7 +31,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TasksEndpointSystemTest {
 
     private static final RestAssuredSystemTestFixture fixture = new RestAssuredSystemTestFixture();
+
     private static final String TEST_USER_ID = "cnj-tester";
+
     private static final String UNKNOWN_USER_ID = "anonymous";
 
     private final List<String> trashBin = new ArrayList<>();

@@ -29,7 +29,7 @@
         <restassured.version>3.3.0</restassured.version>
         <cnj.common.test.version>3.0.1</cnj.common.test.version>
         <!-- common persistence dependencies -->
-        <flyway.version>6.5.7</flyway.version>
+        <flyway.version>8.5.0</flyway.version>
         <postgres.jdbc.version>42.3.1</postgres.jdbc.version>
         <common.persistence.version>0.8.0</common.persistence.version>
         <!-- docker related properties -->
@@ -149,7 +149,7 @@
         <dependency>
             <groupId>group.msg.at.cloud.common</groupId>
             <artifactId>cnj-common-rest-jakarta</artifactId>
-            <version>${common.rest.version}</version>
+            <version>0.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -170,6 +170,11 @@
             <groupId>org.eclipse.microprofile.metrics</groupId>
             <artifactId>microprofile-metrics-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>group.msg.at.cloud.common</groupId>
+            <artifactId>cnj-common-observability-jakarta</artifactId>
+            <version>0.1.0</version>
         </dependency>
         <!-- showcase specific section -->
         <dependency>
@@ -208,8 +213,20 @@
         </dependency>
         <dependency>
             <groupId>group.msg.at.cloud.common</groupId>
-            <artifactId>cnj-common-test</artifactId>
-            <version>${cnj.common.test.version}</version>
+            <artifactId>cnj-common-test-core</artifactId>
+            <version>0.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>group.msg.at.cloud.common</groupId>
+            <artifactId>cnj-common-test-jakarta</artifactId>
+            <version>0.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.17.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

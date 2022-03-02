@@ -1,6 +1,6 @@
 package group.msg.at.cloud.cloudtrain.adapter.rest;
 
-import group.msg.at.cloud.common.test.JsonpAssertions;
+import group.msg.at.cloud.common.test.json.JsonpAssertions;
 import group.msg.at.cloud.common.test.rest.RestAssuredSystemTestFixture;
 import io.restassured.http.ContentType;
 import io.restassured.response.ExtractableResponse;
