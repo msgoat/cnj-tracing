@@ -18,7 +18,7 @@
         <java.version>11</java.version>
         <jakartaee.version>9.1.0</jakartaee.version>
         <payara.version>5.2022.1</payara.version>
-        <payara.opentracing.jaeger.version>0.8.0</payara.opentracing.jaeger.version>
+        <payara.opentracing.jaeger.version>1.0.0</payara.opentracing.jaeger.version>
         <microprofile.version>4.1</microprofile.version>
         <!-- common logging dependencies -->
         <slf4j.version>1.7.32</slf4j.version>
