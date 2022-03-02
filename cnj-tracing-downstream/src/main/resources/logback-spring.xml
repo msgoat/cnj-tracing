@@ -3,6 +3,9 @@
     <springProfile name="default">
         <include resource="org/springframework/boot/logging/logback/base.xml" />
     </springProfile>
+    <springProfile name="test">
+        <include resource="org/springframework/boot/logging/logback/base.xml" />
+    </springProfile>
     <springProfile name="cloud">
         <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
             <encoder class="net.logstash.logback.encoder.LogstashEncoder" />

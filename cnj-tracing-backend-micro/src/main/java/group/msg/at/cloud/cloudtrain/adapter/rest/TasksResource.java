@@ -2,13 +2,13 @@ package group.msg.at.cloud.cloudtrain.adapter.rest;
 
 import group.msg.at.cloud.cloudtrain.core.boundary.TaskManagement;
 import group.msg.at.cloud.cloudtrain.core.entity.Task;
-import group.msg.at.cloud.common.web.jaxrs.RouterAwareUriBuilderFactory;
+import group.msg.at.cloud.common.rest.uri.RouterAwareUriBuilderFactory;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.*;
 
-import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;

@@ -2,7 +2,7 @@ package group.msg.at.cloud.cloudtrain.adapter.rest;
 
 import group.msg.at.cloud.cloudtrain.core.boundary.TaskManagement;
 import group.msg.at.cloud.cloudtrain.core.entity.Task;
-import group.msg.at.cloud.common.web.jaxrs.RouterAwareUriBuilderFactory;
+import group.msg.at.cloud.common.rest.uri.RouterAwareUriBuilderFactory;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
@@ -34,7 +34,7 @@ public class TasksResource {
     private HttpHeaders httpHeaders;
 
     @Inject
-    private TaskManagement boundary;
+    TaskManagement boundary;
 
     @GET
     public Response getAllTasks() {
