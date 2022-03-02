@@ -9,7 +9,7 @@ version: '3'
 services:
 
   jaeger:
-    image: jaegertracing/all-in-one:1.19
+    image: jaegertracing/all-in-one:1.30
     ports:
       - "36831:6831"
       - "36832:6832"
@@ -20,14 +20,14 @@ services:
     ports:
       - "38080:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: dev
+      DOCKER_JAVA_OPTS: -Xms2g -Xmx2g
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain
     depends_on:
       - jaeger
 
   postgres:
-    image: postgres:11-alpine
+    image: postgres:14-alpine
     ports:
       - "5432:5432"
     environment:

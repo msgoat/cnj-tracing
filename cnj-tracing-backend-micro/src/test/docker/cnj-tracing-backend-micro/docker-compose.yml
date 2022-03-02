@@ -8,20 +8,8 @@ version: '3'
 
 services:
 
-  jaeger:
-    image: jaegertracing/all-in-one:1.19
-
-  downstream:
-    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-tracing-downstream:latest
-    environment:
-      SPRING_PROFILES_ACTIVE: dev
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain
-    depends_on:
-      - jaeger
-
   postgres:
-    image: postgres:11-alpine
+    image: postgres:14-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: changeit
@@ -30,11 +18,24 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
+  jaeger:
+    image: jaegertracing/all-in-one:1.30
+
+  downstream:
+    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-tracing-downstream:latest
+    environment:
+      DOCKER_JAVA_OPTS: -Xms2g -Xmx2g
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain
+    depends_on:
+      - jaeger
+
   backend:
     image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-tracing-backend-micro:latest
     ports:
       - "38080:8080"
     environment:
+      DOCKER_JAVA_OPTS: -Xms2g -Xmx2g
       PAYARA_LOGGING_FORMAT: "TEXT"
       MP_JWT_VERIFY_PUBLICKEY_LOCATION: "https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs"
       MP_JWT_VERIFY_ISSUER: "https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain"
@@ -45,6 +46,14 @@ services:
       POSTGRES_DB_NAME: cloudtrain
       POSTGRES_DB_HOST: postgres
       POSTGRES_DB_PORT: 5432
+      WAIT_FOR_PORTS: "postgres:5432"
+      JAEGER_SERVICE_NAME: "cnj-tracing-backend-spring"
+      JAEGER_AGENT_HOST: jaeger
+      JAEGER_AGENT_PORT: 6831
+      JAEGER_REPORTER_LOG_SPANS: "false"
+      JAEGER_SAMPLER_TYPE: "const"
+      JAEGER_SAMPLER_PARAM: "1.0"
+
     depends_on:
       - downstream
       - postgres
