@@ -119,7 +119,9 @@ metrics:
 tracing:
   enabled: true
   jaeger:
+    service:
+      name: cnj-tracing-backend-micro
     agent:
       host: jaeger-agent.tracing
       port: 6831
-    logSpans: true
+    logSpans: false
